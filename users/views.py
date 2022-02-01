@@ -12,8 +12,7 @@ from titles.permissions import IsAdminAdmin
 from .models import User
 from .serializers import (RegEmailSerializer,
                           RegUserSerializer,
-                          UserSerializer
-                          )
+                          UserSerializer)
 
 
 class APIRegEmail(APIView):
