@@ -52,6 +52,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
     steps:
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})"
+      id: extract_branch
+    - name: Deploy
+      run: ./deploy.sh
+      if: steps.extract_branch.outputs.branch == 'master'
     - name: executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
       with:
